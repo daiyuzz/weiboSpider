@@ -59,7 +59,7 @@ DOWNLOAD_DELAY = 1
 DOWNLOADER_MIDDLEWARES = {
     'WeiboScrapy.middlewares.CookiesMiddleware': 554,
     'WeiboScrapy.middlewares.ProxyMiddleware': 555,
-    # 'WeiboScrapy.middlewares.RetryMiddleware': 600,
+    'WeiboScrapy.middlewares.RetryMiddleware': 600,
 }
 
 # Enable or disable extensions
