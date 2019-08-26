@@ -9,7 +9,7 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 from fake_useragent import UserAgent
-
+import random
 ua = UserAgent(verify_ssl=False)
 
 BOT_NAME = 'WeiboScrapy'
@@ -31,7 +31,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = random.randint(1,3)
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # CONCURRENT_REQUESTS_PER_IP = 16
@@ -110,7 +110,8 @@ RETRY_HTTP_CODES = [401, 403, 408, 414, 500, 502, 503, 504]
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 
-REDIS_URL = 'redis://root:dai1993@106.12.78.90:6379'
+REDIS_URL = 'redis://106.12.78.90:6379'
+# REDIS_URL = 'redis://root@localhost:6379'
 
 # Enables scheduling storing requests queue in redis.
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
