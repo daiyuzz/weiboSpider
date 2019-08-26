@@ -74,6 +74,7 @@ ITEM_PIPELINES = {
     'WeiboScrapy.pipelines.TimePipeline': 300,
     'WeiboScrapy.pipelines.WeiboscrapyPipeline': 301,
     'WeiboScrapy.pipelines.MongoPipeline': 302,
+    'scrapy_redis.pipelines.RedisPipeline': 303
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -105,3 +106,8 @@ PROXY_URL = 'http://localhost:5010/get'
 #RETRY_ENABLED = True
 RETRY_ENABLE = 2
 RETRY_HTTP_CODES = [401, 403, 408, 414, 500, 502, 503, 504]
+
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+
+REDIS_URL = 'redis://root:dai1993@106.12.78.90:6379'
