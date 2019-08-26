@@ -10,6 +10,7 @@
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 from fake_useragent import UserAgent
 import random
+
 ua = UserAgent(verify_ssl=False)
 
 BOT_NAME = 'WeiboScrapy'
@@ -31,7 +32,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = random.randint(1,3)
+DOWNLOAD_DELAY = random.randint(1, 3)
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # CONCURRENT_REQUESTS_PER_IP = 16
@@ -57,9 +58,9 @@ DOWNLOAD_DELAY = random.randint(1,3)
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
+    # 'WeiboScrapy.middlewares.WeiboRetryMiddleware': 556,
     'WeiboScrapy.middlewares.CookiesMiddleware': 554,
     'WeiboScrapy.middlewares.ProxyMiddleware': 555,
-    # 'WeiboScrapy.middlewares.RetryMiddleware': 600,
 }
 
 # Enable or disable extensions
@@ -103,7 +104,7 @@ MONGO_DB = 'weibo'
 COOKIES_URL = 'http://localhost:5000/weibo/random'
 PROXY_URL = 'http://localhost:5010/get'
 
-#RETRY_ENABLED = True
+# RETRY_ENABLED = True
 RETRY_ENABLE = 2
 RETRY_HTTP_CODES = [401, 403, 408, 414, 500, 502, 503, 504]
 
@@ -111,7 +112,7 @@ SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 
 REDIS_URL = 'redis://106.12.78.90:6379'
-# REDIS_URL = 'redis://root@localhost:6379'
+
 
 # Enables scheduling storing requests queue in redis.
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
@@ -119,3 +120,9 @@ SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 # Ensure all spiders share same duplicates filter through redis.
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 
+# retry中间件设置
+RETRY_ENABLE = True
+RETRY_TIMES = 3
+RETRY_HTTP_CODES = [500, 502, 503, 504, 522, 524, 408]
+SLEEP_HTTP_CODES = [418]
+SLEEP_TIME = 10

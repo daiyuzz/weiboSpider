@@ -9,7 +9,7 @@ import time
 
 import requests
 from scrapy import signals
-
+from scrapy.downloadermiddlewares.retry import RetryMiddleware
 import logging
 
 
@@ -75,12 +75,11 @@ class ProxyMiddleware():
         )
 
 
-
-class RetryMiddleware():
+# RETRY中间件
+class WeiboRetryMiddleware(RetryMiddleware):
     def process_response(self, request, response, spider):
-        if response.status == 200 and response == None:
-            return request
-        elif response.status == 418:
-            time.sleep(3)
-            print('sleep...try again....')
+        if request.meta.get('dont_retry', False):
+            return response
+        if response.status == 418:
+            time.sleep(10)
             return request
