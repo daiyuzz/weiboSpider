@@ -59,7 +59,7 @@ DOWNLOAD_DELAY = random.randint(1, 3)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     # 'WeiboScrapy.middlewares.WeiboRetryMiddleware': 556,
-    'WeiboScrapy.middlewares.CookiesMiddleware': 554,
+    # 'WeiboScrapy.middlewares.CookiesMiddleware': 554,
     'WeiboScrapy.middlewares.ProxyMiddleware': 555,
 }
 
