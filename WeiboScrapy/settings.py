@@ -101,8 +101,8 @@ ITEM_PIPELINES = {
 
 MONGO_URI = 'localhost'
 MONGO_DB = 'weibo'
-COOKIES_URL = 'http://localhost:5000/weibo/random'
-PROXY_URL = 'http://localhost:5010/get'
+COOKIES_URL = 'http://106.12.78.90:5000/weibo/random'
+PROXY_URL = 'http://106.12.78.90:5010/get'
 
 # RETRY_ENABLED = True
 RETRY_ENABLE = 2
